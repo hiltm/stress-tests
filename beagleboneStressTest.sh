@@ -12,7 +12,9 @@ stress_duration=60   # stress test duration in seconds
 stress_workers=4     # number of workers to spawn for the stress test
 log_file="stress_load.log"
 
-# TODO put logic to pass in parameters with calling the script
+# handle passing in parameters with calling the script
+stress_duration="${1:-$stress_duration}"
+stress_workers="${2:-$stress_workers}"
 
 echo "Starting stress-ng with $stress_workers workers for $stress_duration seconds..."
 
@@ -45,7 +47,7 @@ echo "Starting stress test at $(date)" > "$log_file"
 
 # periodically report system load during the stress test
 interval=5   # interval in seconds between each load report
-end_time=$(( $(date +%s) + $stress_duration ))
+end_time=$(($(date +%s) + stress_duration))
 
 while [ $(date +%s) -lt $end_time ]; do
    report_load
