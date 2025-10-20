@@ -1,5 +1,27 @@
 #!/bin/bash
 
+# help message
+show_help() {
+   echo "Usage: $0 [OPTIONS]"
+   echo
+   echo "This script runs a stress test on the BeagleBone Black CPU using stress-ng and loads system load"
+   echo
+   echo "Options:"
+   echo "   --help                Show this help message"
+   echo "   stress_duration       Duration of stress test in seconds (default is 60)"
+   echo "   stress_workers        Number of CPU workers to stress (default is 4)"
+   echo
+   echo "Examples:"
+   echo "   $0                    # Run with default values ( 60 seconds, 4 workers)"
+   echo "   $0 123 6              # Run for 123 seconds with 6 workers"
+   exit 0
+}
+
+# check if first argument is --help, if so then show message above and exit
+if [[ "$1" == "--help" ]]; then
+   show_help
+fi
+
 # check that we can call stress-ng
 if ! command -v stress-ng &> /dev/null
 then
