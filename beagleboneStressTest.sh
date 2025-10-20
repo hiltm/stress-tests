@@ -32,7 +32,7 @@ fi
 # default parameters for stress tests
 stress_duration=60   # stress test duration in seconds
 stress_workers=4     # number of workers to spawn for the stress test
-log_file="stress_load.log"
+log_file="stress_load_$(date +%Y-%m-%d_%H-%M-%S).log"
 
 # handle passing in parameters with calling the script
 stress_duration="${1:-$stress_duration}"
