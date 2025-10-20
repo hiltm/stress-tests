@@ -73,6 +73,7 @@ end_time=$(($(date +%s) + stress_duration))
 
 while [ $(date +%s) -lt $end_time ]; do
    report_load
+   log_load
    sleep $interval
 done
 
